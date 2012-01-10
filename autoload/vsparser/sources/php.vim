@@ -2,7 +2,6 @@ function! vsparser#sources#php#define()
   return s:source
 endfunction
 
-" TODO: fix single quote string has \'.
 let s:source = {
   \   'kinds': [{
   \     'name': 'class',
@@ -22,19 +21,19 @@ let s:source = {
   \   }, {
   \     'name': 'comment',
   \     'type': 'inline',
-  \     'pattern': '^/\*\(\(\_[^*]\|\*[^/]\)*\)\*/',
+  \     'pattern': '^/\*\(\(\_[^\*]\|\*[^/]\)*\)\*/',
   \   }, {
   \     'name': 'comment-line',
   \     'type': 'inline',
-  \     'pattern': '^//[^\$]*',
+  \     'pattern': '^//\_.\{-}\n',
   \   }, {
   \     'name': 'string',
   \     'type': 'inline',
-  \     'pattern': '^"\(\(\(\\"\)\|[^"]\)*\)"',
+  \     'pattern': '^"\(\(\(\\"\)\|[^"]\)\{-}\)"',
   \   }, {
   \     'name': 'string',
   \     'type': 'inline',
-  \     'pattern': "^'[^']*'",
+  \     'pattern': '^'. "'". '\(\(\(\\'. "'". '\)\|[^'. "'". ']\)\{-}\)'. "'",
   \   }]
   \ }
 

@@ -2,7 +2,6 @@ function! vsparser#sources#ruby#define()
   return s:source
 endfunction
 
-" TODO: fix single quote string has \'.
 let s:source = {
   \   'kinds': [{
   \     'name': 'module',
@@ -40,11 +39,11 @@ let s:source = {
   \   }, {
   \     'name': 'string',
   \     'type': 'inline',
-  \     'pattern': '^"\(\(\(\\"\)\|[^"]\)*\)"',
+  \     'pattern': '^"\(\(\(\\"\)\|[^"]\)\{-}\)"',
   \   }, {
   \     'name': 'string',
   \     'type': 'inline',
-  \     'pattern': "^'[^']*'",
+  \     'pattern': '^'. "'". '\(\(\(\\'. "'". '\)\|[^'. "'". ']\)\{-}\)'. "'",
   \   }]
   \ }
 

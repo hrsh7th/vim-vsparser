@@ -21,16 +21,17 @@ function! vsparser#parse(source, context)
         let a:context.idx = a:context.idx + strlen(matches[0])
 
         " Queing token for debug.
-        call add(a:context.token, [kind.name, matches[1], matches[0]])
+        call add(a:context.token, [kind.name, matches[0], matches[1]])
 
         " Push block.
         if kind.type == 'block'
+          let kind.trace = matches
           call add(a:context.stack, kind)
         endif
 
         " Process hook function.
-        if exists('kind.hook') && exists('a:info.'. kind.hook)
-          call a:info[kind.hook](a:context, matches)
+        if exists('kind.hook') && exists('a:source.'. kind.hook)
+          call a:source[kind.hook](a:context, matches)
         endif
         break
       endif
