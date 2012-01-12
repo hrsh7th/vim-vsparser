@@ -20,7 +20,7 @@ function! vsparser#parse(source, context)
         " Increment matched string.
         let a:context.idx = a:context.idx + strlen(matches[0]) - 1
 
-        " Queing token for debug.
+        " Queueing token for debug.
         call add(a:context.token, [kind.name, matches[0], matches[1]])
 
         " Push block.
