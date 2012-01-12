@@ -5,7 +5,7 @@ function! vsparser#parse(source, context)
       let matches = matchlist(a:context.src, a:context.stack[-1].close, a:context.idx)
       if !empty(matches)
         " Increment matched string.
-        let a:context.idx = a:context.idx + strlen(matches[0])
+        let a:context.idx = a:context.idx + strlen(matches[0]) - 1
 
         " Pop block.
         call remove(a:context.stack, -1)
@@ -18,7 +18,7 @@ function! vsparser#parse(source, context)
       let matches = matchlist(a:context.src, kind.pattern, a:context.idx)
       if !empty(matches)
         " Increment matched string.
-        let a:context.idx = a:context.idx + strlen(matches[0])
+        let a:context.idx = a:context.idx + strlen(matches[0]) - 1
 
         " Queing token for debug.
         call add(a:context.token, [kind.name, matches[0], matches[1]])

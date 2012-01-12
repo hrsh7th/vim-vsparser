@@ -21,7 +21,7 @@ let s:source = {
   \   }, {
   \     'name': 'comment',
   \     'type': 'inline',
-  \     'pattern': '^/\*\(\(\_[^\*]\|\*[^/]\)*\)\*/',
+  \     'pattern': '^/\*\(\_.\{-}\)\*/',
   \   }, {
   \     'name': 'comment-line',
   \     'type': 'inline',
@@ -34,6 +34,30 @@ let s:source = {
   \     'name': 'string',
   \     'type': 'inline',
   \     'pattern': '^'. "'". '\(\(\(\\'. "'". '\)\|[^'. "'". ']\)\{-}\)'. "'",
+  \   }, {
+  \     'name': 'number',
+  \     'type': 'inline',
+  \     'pattern': '^\d\+\(.\d\+\)\=',
+  \   }, {
+  \     'name': 'array',
+  \     'type': 'inline',
+  \     'pattern': '^array(',
+  \   }, {
+  \     'name': 'object',
+  \     'type': 'inline',
+  \     'pattern': '^new\s\+\(\w\+\)',
+  \   }, {
+  \     'name': 'variable',
+  \     'type': 'inline',
+  \     'pattern': '^\$\(\w\+\)',
+  \   }, {
+  \     'name': 'assign',
+  \     'type': 'inline',
+  \     'pattern': '^\s*&\=\s*=\s*',
+  \   }, {
+  \     'name': 'member',
+  \     'type': 'inline',
+  \     'pattern': '^->\(\w\+\)',
   \   }]
   \ }
 
